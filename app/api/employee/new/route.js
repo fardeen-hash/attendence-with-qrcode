@@ -3,7 +3,7 @@ import { connectToDB } from "@utils/database";
 
 export const POST = async (request) => {
     const { userId, employee_name,mobile_num,aadhar } = await request.json();
-    var time = new Date("2020-10-15T00:00:00.000Z")
+    var time = new Date()
 
     try {
         await connectToDB(userId);

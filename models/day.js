@@ -9,11 +9,12 @@ const DaySchema = new Schema({
         type: String,
         required: [true, 'Prompt is required.'],
     },
-    time : { type : Date, default: Date.now },
-    mobile_num: {
-        type:Number
-    },
-    aadhar: {
-        type:Number
-    },
+    date: { type : Date},
+    start_time : { type : Date, default: Date.now },
+    total_time : { type : Date},
+    isCompleted: {type: Boolean,default: false},
+    cost: {type:Number},
 });
+const Day = models.Day || model('Day', DaySchema);
+
+export default Day;
