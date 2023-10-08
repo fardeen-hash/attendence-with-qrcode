@@ -40,6 +40,20 @@
   filter: invert(1);
 }
 
+.video-qr{
+  height: 300px;
+  width: 300px;
+}
+
+.containerColumn{
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 15vh;
+  right: 5px;
+  height: 20vh;
+}
+
 .gradient {
   height: fit-content;
   z-index: 3;

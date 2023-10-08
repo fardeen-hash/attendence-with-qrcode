@@ -15,7 +15,37 @@ const EmployeeSchema = new Schema({
         type:Number
     },
     aadhar: {
-        type:Number
+        type:String
+    },
+    id_card: {
+        type: String,
+    },
+    designation: {
+        type: String,
+    },
+    res_no: {
+        type: String,
+    },
+    full_addr: {
+        type: String,
+    },
+    police: {
+        type: String,
+    },
+    police: {
+        type: String,
+    },
+    contactractor_addr: {
+        type: String,
+    },
+    addr_house_owner: {
+        type: String,
+    },
+    bank_account: {
+        type: String,
+    },
+    other_details: {
+        type: String,
     },
 });
 

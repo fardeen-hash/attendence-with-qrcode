@@ -1,4 +1,4 @@
-import Feed from "@components/Feed";
+import Feedemp from "@components/Feedemp";
 
 const Home = () => (
   <section className='w-full flex-center flex-col'>
@@ -12,7 +12,7 @@ const Home = () => (
       discover, create and share creative prompts
     </p>
 
-    <Feed />
+    <Feedemp />
   </section>
 );
 
