@@ -34,6 +34,7 @@ const Feedemp = () => {
     const fetchPosts = async () => {
       const response = await fetch(`/api/employee/${session?.user.id}/emp`);
       const data = await response.json();
+      console.log(session);
       setAllPosts(data);
     };
     if (session?.user.id) fetchPosts();
@@ -44,7 +45,7 @@ const Feedemp = () => {
     const regex = new RegExp(searchtext, "i"); // 'i' flag for case-insensitive search
     return allPosts.filter(
       (item) =>
-        regex.test(item.creator.username) ||
+        regex.test(item.employee_name) ||
         regex.test(item.tag) ||
         regex.test(item.prompt)
     );
@@ -75,7 +76,7 @@ const Feedemp = () => {
       <form className='relative w-full flex-center'>
         <input
           type='text'
-          placeholder='Search for a tag or a username'
+          placeholder='Search for a Employee'
           value={searchText}
           onChange={handleSearchChange}
           required

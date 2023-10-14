@@ -6,6 +6,7 @@ export const POST = async (request) => {
     var date = new Date();
     date.setHours(0, 0, 0, 0);
     var start_time= new Date();
+    let final_cost =0;
     
 
     try {
@@ -20,32 +21,41 @@ export const POST = async (request) => {
      //  const postss =await Day.find( { date: { $gte: date, $lte: date } });
        
        
-        console.log(dayExists);
+       console.log(dayExists);
         //console.log(today);
+
+        
         
       
         //if not creating the date
-        if(!dayExists){
+        if(dayExists.length==0){
             console.log("inside day exists!")
             const newDay = new Day({userId, employee_name,date,cost,isCompleted,start_time,hours});
             await newDay.save();
             return new Response(JSON.stringify(newDay), { status: 201 })
         }
         const[day]=dayExists;
-        console.log(day.isCompleted);
+       // console.log(day.isCompleted);
 
         //calculating amount of time worked
-        console.log(start_time-day.start_time);
         const ms = start_time-day.start_time;
         let hour = (ms / (1000 * 60 * 60)).toFixed(1);
         console.log(hour);
 
         //calculating cost
+
+        if(hour>8){
+            const extra = (hours - 8)*100;
+            final_cost= cost +extra;
+        }
         
 
         //update time and amount 
+        day.hours= hour;
+        day.cost = final_cost;
+        day.isCompleted = true;
         //update isCompleted to true 
-      
+        await day.save();
 
          return new Response( "nothing  happpened",{ status: 201 })
         
