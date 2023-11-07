@@ -1,15 +1,19 @@
-"use client";
+'use client'
 import { PaperClipIcon } from '@heroicons/react/20/solid'
 import { useEffect, useState } from "react"
+import Link from "next/link";
+import { usePathname, useRouter } from "next/navigation";
 
 import Profile from "@components/Profile";
-import {QRCode} from "react-qr-code"
+import { QRCode } from "react-qr-code"
 
 const UserProfile = ({ params }) => {
 
   const [qrCodeValue, setQrCodeValue] = useState("");
 
   const [userPosts, setUserPosts] = useState([]);
+  const router = useRouter();
+  const pathName = usePathname();
 
   useEffect(() => {
     const fetchPosts = async () => {
@@ -24,10 +28,27 @@ const UserProfile = ({ params }) => {
     if (params?.id) fetchPosts();
   }, [params.id]);
 
+  const handleProfileClick = () => {
+    router.push(`${pathName}/status`);
+  };
+
   return (
     <div>
-      
-      <div className="px-4 sm:px-0"> 
+      <img
+        src={userPosts.employee_photo}
+        alt='user_image'
+        width={120}
+        height={120}
+        className='rounded-full object-contain '
+      />
+      <button
+        type='button'
+        onClick={handleProfileClick}
+        className='black_btn m-6 '
+      >
+        Status
+      </button>
+      <div className="px-4 sm:px-0">
         <h3 className="head_text font-semibold leading-7 text-gray-900">{userPosts.employee_name}</h3>
       </div>
       <div className="mt-6 border-t border-gray-100">
@@ -41,8 +62,12 @@ const UserProfile = ({ params }) => {
             <dd className="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">{userPosts.designation}</dd>
           </div>
           <div className="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+            <dt className="text-sm font-medium leading-6 text-gray-900">Personal phone</dt>
+            <dd className="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">{userPosts.mobile_num}</dd>
+          </div>
+          <div className="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
             <dt className="text-sm font-medium leading-6 text-gray-900">Address</dt>
-            <dd className="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">margotfoster@example.com</dd>
+            <dd className="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">{userPosts.full_addr}</dd>
           </div>
           <div className="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
             <dt className="text-sm font-medium leading-6 text-gray-900">Residential phone</dt>
@@ -52,40 +77,46 @@ const UserProfile = ({ params }) => {
             <dt className="text-sm font-medium leading-6 text-gray-900">Police Station</dt>
             <dd className="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">{userPosts.police}</dd>
           </div>
+          <label>
+            <span className='font-satoshi  font-semibold text-base text-gray-900'>
+              ID Card
+            </span>
+            <img
+              src={userPosts.id_card}
+              alt='user_image'
+              width={450}
+              height={450}
+              className='m-6'
+            />
+          </label>
+
+          <label>
+            <span className='font-satoshi font-semibold  text-base text-gray-900'>
+              Aadhar Card
+            </span>
+            <img
+              src={userPosts.aadhar}
+              alt='user_image'
+              width={450}
+              height={450}
+              className='m-6'
+            />
+          </label>
           <div className="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
-            <dt className="text-sm font-medium leading-6 text-gray-900">Attachments</dt>
-            <dd className="mt-2 text-sm text-gray-900 sm:col-span-2 sm:mt-0">
-              <ul role="list" className="divide-y divide-gray-100 rounded-md border border-gray-200">
-                <li className="flex items-center justify-between py-4 pl-4 pr-5 text-sm leading-6">
-                  <div className="flex w-0 flex-1 items-center">
-                    <PaperClipIcon className="h-5 w-5 flex-shrink-0 text-gray-400" aria-hidden="true" />
-                    <div className="ml-4 flex min-w-0 flex-1 gap-2">
-                      <span className="truncate font-medium">resume_back_end_developer.pdf</span>
-                      <span className="flex-shrink-0 text-gray-400">2.4mb</span>
-                    </div>
-                  </div>
-                  <div className="ml-4 flex-shrink-0">
-                    <a href="#" className="font-medium text-indigo-600 hover:text-indigo-500">
-                      Download
-                    </a>
-                  </div>
-                </li>
-                <li className="flex items-center justify-between py-4 pl-4 pr-5 text-sm leading-6">
-                  <div className="flex w-0 flex-1 items-center">
-                    <PaperClipIcon className="h-5 w-5 flex-shrink-0 text-gray-400" aria-hidden="true" />
-                    <div className="ml-4 flex min-w-0 flex-1 gap-2">
-                      <span className="truncate font-medium">coverletter_back_end_developer.pdf</span>
-                      <span className="flex-shrink-0 text-gray-400">4.5mb</span>
-                    </div>
-                  </div>
-                  <div className="ml-4 flex-shrink-0">
-                    <a href="#" className="font-medium text-indigo-600 hover:text-indigo-500">
-                      Download
-                    </a>
-                  </div>
-                </li>
-              </ul>
-            </dd>
+            <dt className="text-sm font-medium leading-6 text-gray-900">Name,Address And Phone Number Of Contractor</dt>
+            <dd className="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">{userPosts.contactractor_addr}</dd>
+          </div>
+          <div className="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+            <dt className="text-sm font-medium leading-6 text-gray-900">Address Of House Owner</dt>
+            <dd className="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">{userPosts.addr_house_owner}</dd>
+          </div>
+          <div className="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+            <dt className="text-sm font-medium leading-6 text-gray-900">Bank Details</dt>
+            <dd className="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">{userPosts.bank_account}</dd>
+          </div>
+          <div className="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+            <dt className="text-sm font-medium leading-6 text-gray-900">Other Details</dt>
+            <dd className="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">{userPosts.other_details}</dd>
           </div>
         </dl>
       </div>
@@ -93,10 +124,10 @@ const UserProfile = ({ params }) => {
         <div className='card font-satoshi font-semibold text-gray-900'></div>
         {qrCodeValue != "" && (
           <QRCode value={qrCodeValue} className='containerColumn' />
-          
+
         )}
 
-    </div>
+      </div>
     </div>
   );
 };

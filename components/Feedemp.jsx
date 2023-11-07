@@ -36,6 +36,7 @@ const Feedemp = () => {
       const data = await response.json();
       console.log(session);
       setAllPosts(data);
+      console.log(data);
     };
     if (session?.user.id) fetchPosts();
   }, [session?.user.id]);

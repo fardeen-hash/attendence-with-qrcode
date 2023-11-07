@@ -1,18 +1,20 @@
 import Link from "next/link";
+import FileBase64 from 'react-file-base64';
 
 const Form = ({ type, post, setPost, submitting, handleSubmit }) => {
+
   return (
     <section className='w-full max-w-full flex-start flex-col'>
       <h1 className='head_text text-left'>
         <span className='head_text'>{type} New Employee </span>
       </h1>
-     
+
 
       <form
         onSubmit={handleSubmit}
         className='mt-10 w-full max-w-2xl flex flex-col gap-7 glassmorphism'
       >
-        
+
         <label>
           <span className='font-satoshi font-semibold text-base text-gray-700'>
             Name{" "}
@@ -28,6 +30,15 @@ const Form = ({ type, post, setPost, submitting, handleSubmit }) => {
         </label>
         <label>
           <span className='font-satoshi font-semibold text-base text-gray-700'>
+           Employee Photo{" "}
+          </span>
+          <FileBase64
+            multiple={false}
+            onDone={({ base64 }) => setPost({ ...post, e_photo: base64 })}
+            />
+        </label>
+        <label>
+          <span className='font-satoshi font-semibold text-base text-gray-700'>
             Designation{" "}
           </span>
           <input
@@ -40,7 +51,7 @@ const Form = ({ type, post, setPost, submitting, handleSubmit }) => {
           />
         </label>
 
-        
+
         <label>
           <span className='font-satoshi font-semibold text-base text-gray-700'>
             Personal Phone{" "}
@@ -55,7 +66,7 @@ const Form = ({ type, post, setPost, submitting, handleSubmit }) => {
           />
         </label>
 
-        
+
         <label>
           <span className='font-satoshi font-semibold text-base text-gray-700'>
             Full Address With State And District{" "}
@@ -70,7 +81,7 @@ const Form = ({ type, post, setPost, submitting, handleSubmit }) => {
           />
         </label>
 
-        
+
         <label>
           <span className='font-satoshi font-semibold text-base text-gray-700'>
             Residential Phone Number With Name{" "}
@@ -85,7 +96,7 @@ const Form = ({ type, post, setPost, submitting, handleSubmit }) => {
           />
         </label>
 
-        
+
         <label>
           <span className='font-satoshi font-semibold text-base text-gray-700'>
             Police Station{" "}
@@ -100,37 +111,29 @@ const Form = ({ type, post, setPost, submitting, handleSubmit }) => {
           />
         </label>
 
-         
+
         <label>
           <span className='font-satoshi font-semibold text-base text-gray-700'>
             Details Of ID Card{" "}
           </span>
-          <input
-            value={post.id_card}
-            onChange={(e) => setPost({ ...post, id_card: e.target.value })}
-            type='text'
-            placeholder=''
-            required
-            className='form_input'
-          />
+          <FileBase64
+            multiple={false}
+            onDone={({ base64 }) => setPost({ ...post, id_card: base64 })}
+            />
         </label>
 
-         
+
         <label>
           <span className='font-satoshi font-semibold text-base text-gray-700'>
             Details Of Aadhar{" "}
           </span>
-          <input
-            value={post.addr_card}
-            onChange={(e) => setPost({ ...post, addr_card: e.target.value })}
-            type='text'
-            placeholder=''
-            required
-            className='form_input'
-          />
+          <FileBase64
+            multiple={false}
+            onDone={({ base64 }) => setPost({ ...post, addr_card: base64 })}
+            />
         </label>
 
-         
+
         <label>
           <span className='font-satoshi font-semibold text-base text-gray-700'>
             Name,Address And Phone Number Of Contractor{" "}
@@ -145,7 +148,7 @@ const Form = ({ type, post, setPost, submitting, handleSubmit }) => {
           />
         </label>
 
-         
+
         <label>
           <span className='font-satoshi font-semibold text-base text-gray-700'>
             Address Of House Owner{" "}
@@ -160,7 +163,7 @@ const Form = ({ type, post, setPost, submitting, handleSubmit }) => {
           />
         </label>
 
-         
+
         <label>
           <span className='font-satoshi font-semibold text-base text-gray-700'>
             Bank Account{" "}
@@ -175,7 +178,7 @@ const Form = ({ type, post, setPost, submitting, handleSubmit }) => {
           />
         </label>
 
-         
+
         <label>
           <span className='font-satoshi font-semibold text-base text-gray-700'>
             Other Details{" "}

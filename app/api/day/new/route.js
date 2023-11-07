@@ -49,13 +49,15 @@ export const POST = async (request) => {
             final_cost= cost +extra;
         }
         
-
-        //update time and amount 
+        
+        //update time and amount
+        if(day.isCompleted==false){ 
         day.hours= hour;
         day.cost = final_cost;
         day.isCompleted = true;
         //update isCompleted to true 
         await day.save();
+        }
 
          return new Response( "nothing  happpened",{ status: 201 })
         

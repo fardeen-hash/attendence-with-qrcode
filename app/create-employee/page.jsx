@@ -26,6 +26,7 @@ const CreatePrompt = () => {
         body: JSON.stringify({
           userId: session?.user.id,
           employee_name: post.name,
+          employee_photo:post.e_photo,
           mobile_num: post.mobile_no,
           aadhar: post.addr_card,
           id_card:post.id_card,

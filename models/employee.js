@@ -10,6 +10,9 @@ const EmployeeSchema = new Schema({
         type: String,
         required: [true, 'Prompt is required.'],
     },
+    employee_photo: {
+        type: String,
+    },
     time : { type : Date},
     mobile_num: {
         type:Number
