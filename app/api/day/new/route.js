@@ -14,7 +14,7 @@ export const POST = async (request) => {
         console.log("after connecttodb");
 
         //finding if day entry already done.
-       const dayExists =await Day.find( {$and: [{date: { $lte: date }},{ userId: userId}]});
+       const dayExists =await Day.find( {$and: [{date: { $gte: date }},{ userId: userId}]});
        
 
        //can be used to fetch dates from ranges
@@ -29,7 +29,6 @@ export const POST = async (request) => {
       
         //if not creating the date
         if(dayExists.length==0){
-            console.log("inside day exists!")
             const newDay = new Day({userId, employee_name,date,cost,isCompleted,start_time,hours});
             await newDay.save();
             return new Response(JSON.stringify(newDay), { status: 201 })

@@ -40,7 +40,7 @@ function Scan() {
             hours:0,
           }),
         });
-  
+        console.log(response);
         if (response.ok) {
           router.push("/");
         }

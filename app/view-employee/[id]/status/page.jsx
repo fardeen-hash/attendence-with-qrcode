@@ -46,7 +46,7 @@ const page = ({ params }) => {
   function daymaker(date) {
     var date1 = new Date(date);
     const day = date1.getDay();
-    const days = ["Sunday", "Monday", "Tuesday", "Wedday", "Thurday", "Friday", "Satday"];
+    const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thurday", "Friday", "Satday"];
     return date.slice(0, 10) + " " + days[day];
   }
 
@@ -100,7 +100,7 @@ const page = ({ params }) => {
             <tr key={_id} className="even:bg-blue-gray-50/50">
               <td className="p-4">
                 <Typography variant="small" color="blue-gray" className="font-normal">
-                  {daymaker(date)}
+                  {daymaker(start_time)}
                 </Typography>
               </td>
               <td className="p-4">
